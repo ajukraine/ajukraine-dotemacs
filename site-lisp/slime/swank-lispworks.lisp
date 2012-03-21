@@ -65,10 +65,10 @@
 ;;; UTF8
 
 (defimplementation string-to-utf8 (string)
-  (ef:encode-lisp-string string :utf-8))
+  (ef:encode-lisp-string string '(:utf-8 :eol-style :lf)))
 
 (defimplementation utf8-to-string (octets)
-  (ef:decode-external-string octets :utf-8))
+  (ef:decode-external-string octets '(:utf-8 :eol-style :lf)))
 
 ;;; TCP server
 
@@ -659,7 +659,7 @@ Return NIL if the symbol is unbound."
     (with-open-file (stream file)
       (let ((pos 
              #-(or lispworks4.1 lispworks4.2)
-             (dspec-stream-position stream dspec)))
+             (ignore-errors (dspec-stream-position stream dspec))))
         (if pos
             (list :position (1+ pos))
             (dspec-function-name-position dspec `(:position 1)))))))

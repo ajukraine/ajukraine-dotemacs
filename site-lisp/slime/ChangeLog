@@ -1,3 +1,42 @@
+2012-03-14  Paulo Madeira <acelent@gmail.com>
+
+	Use Unix-EOL convention even on Windows.
+
+	* swank-allegro.lisp (string-to-utf8, utf8-to-string): Use
+	excl:crlf-base-ef.
+	* swank-lispworks.lisp (string-to-utf8,  utf8-to-string): Use
+	'(:utf-8 :eol-style :lf)
+
+2012-03-06  Helmut Eller  <heller@common-lisp.net>
+
+	* swank-ccl.lisp: If 'xref is not provided warn about it but
+	continue.
+
+2012-03-06  Helmut Eller  <heller@common-lisp.net>
+
+	Fix SBCL backend for Windows.
+
+	* swank-sbcl.lisp (fd-stream-input-buffer-empty-p): Restore it.
+
+2012-03-06  Helmut Eller  <heller@common-lisp.net>
+
+	* swank.lisp (swank-require): Ensure that provide as called.
+
+2012-02-12  Stas Boukarev  <stassats@gmail.com>
+
+	* swank-ecl.lisp (accept-connection): Use the proper element-type
+	for the stream.
+
+2012-02-12  Stas Boukarev  <stassats@gmail.com>
+
+	* swank-clisp.lisp (c-error): The number of parameters to
+	sys::c-warn was changed, accommodate both versions.
+
+2012-02-07  Martin Simmons <martin@lispworks.com>
+
+	* swank-lispworks.lisp (dspec-file-position): Fall back to regexp
+	search if dspec-stream-position gets an error.
+
 2012-01-06  Helmut Eller  <heller@common-lisp.net>
 
 	Add a "sentinel thread" to protect access to global lists.

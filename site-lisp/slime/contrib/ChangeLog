@@ -1,3 +1,38 @@
+2012-03-09  Stas Boukarev  <stassats@gmail.com>
+
+	* swank-motd.lisp,
+	 swank-clipboard.lisp,
+         swank-hyperdoc.lisp: Add provide.
+
+2012-03-08  Stas Boukarev  <stassats@gmail.com>
+
+	* swank-arglists.lisp (print-decoded-arglist): When the source of
+	the arglist is a local definition from FLET, some parts may be
+	represented as ARGLIST-DUMMY, handle them.
+
+2012-03-14  Helmut Eller  <heller@common-lisp.net>
+
+	* swank-kawa.scm (%macroexpand): Use Kawa's syntaxutils.
+
+2012-03-06  Helmut Eller  <heller@common-lisp.net>
+
+	* swank-kawa.scm (module-method>meth-ref):  Slightly better
+	heuristic for vararg functions.
+
+2012-03-06  Helmut Eller  <heller@common-lisp.net>
+
+	Add missing provide.
+
+	* swank-repl.lisp
+	* swank-util.lisp
+	* swank-mrepl.lisp
+	* swank-snapshot.lisp
+
+2012-03-06  Stas Boukarev  <stassats@gmail.com>
+
+	* slime-package-fu.el (slime-export-save-file): New variable, when
+	set to T saves package.lisp after each modification. Defaults to NIL.
+
 2012-01-06  Helmut Eller  <heller@common-lisp.net>
 
 	* swank-mrepl.lisp (send-prompt): Fix use of OR.
