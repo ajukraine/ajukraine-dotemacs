@@ -55,7 +55,6 @@
 (setq scroll-conservatively 50)
 (setq scroll-margin 4)
 
-
 ;; Sets encoding of files
 (setq file-name-coding-system 'utf-8)
 
