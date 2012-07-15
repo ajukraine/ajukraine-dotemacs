@@ -91,6 +91,11 @@
 (iswitchb-mode t)
 
 ;;; Markdown-mode
+(add-to-list 'load-path "~/emacs/site-lisp/markdown-mode")
 (autoload 'markdown-mode "markdown-mode.el" 
   "Major mode for editing Markdown files" t)
-(add-to-list 'load-path "~/emacs/site-lisp/markdown-mode")
+
+
+;;; Magit
+(add-to-list 'load-path "~/emacs/site-lisp/magit")
+(require 'magit)

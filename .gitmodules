@@ -4,3 +4,9 @@
 [submodule "site-lisp/markdown-mode"]
 	path = site-lisp/markdown-mode
 	url = git://jblevins.org/git/markdown-mode.git
+[submodule "site-lisp/git-emacs"]
+	path = site-lisp/git-emacs
+	url = git://github.com/tsgates/git-emacs.git
+[submodule "site-lisp/magit"]
+	path = site-lisp/magit
+	url = git://github.com/magit/magit.git
