@@ -10,3 +10,6 @@
 [submodule "site-lisp/magit"]
 	path = site-lisp/magit
 	url = git://github.com/magit/magit.git
+[submodule "site-lisp/ac-slime"]
+	path = site-lisp/ac-slime
+	url = git://github.com/purcell/ac-slime.git

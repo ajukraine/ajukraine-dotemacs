@@ -82,6 +82,11 @@
 	    		 '(2 "_NET_WM_STATE_MAXIMIZED_HORZ" 0)))
 (global-set-key (kbd "S-<f11>") 'fullscreen)
 
+;;; Lisp
+(setq inferior-lisp-program "sbcl")
+
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;        Modes customization         ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -97,6 +102,7 @@
 (setq auto-mode-alist
       (cons '("\\.md". markdown-mode) auto-mode-alist))
 
+
 ;;;; Git integration
 ;;; Magit
 (add-to-list 'load-path "~/emacs/site-lisp/magit")
@@ -104,3 +110,27 @@
 ;;; Git-Emacs
 (add-to-list 'load-path "~/emacs/site-lisp/git-emacs")
 (require 'git-emacs)
+
+
+;;; Auto-Complete
+(add-to-list 'load-path "~/emacs/site-lisp/auto-complete")
+(require 'auto-complete-config)
+(ac-config-default)
+(setq ac-auto-start nil)
+(define-key ac-mode-map (kbd "M-`") 'auto-complete)
+(setq ac-use-fuzzy)
+
+
+;;; Slime
+(add-to-list 'load-path "~/emacs/site-lisp/slime")
+(require 'slime)
+(slime-setup '(slime-fancy))
+
+
+;;; Slime and Auto-Complete
+(add-to-list 'load-path "~/emacs/site-lisp/ac-slime/")
+(require 'ac-slime)
+(add-hook 'slime-mode-hook 'set-up-slime-ac)
+(add-hook 'slime-repl-mode-hook 'set-up-slime-ac)
+(eval-after-load "auto-complete"
+   '(add-to-list 'ac-modes 'slime-repl-mode))
