@@ -94,8 +94,13 @@
 (add-to-list 'load-path "~/emacs/site-lisp/markdown-mode")
 (autoload 'markdown-mode "markdown-mode.el" 
   "Major mode for editing Markdown files" t)
+(setq auto-mode-alist
+      (cons '("\\.md". markdown-mode) auto-mode-alist))
 
-
+;;;; Git integration
 ;;; Magit
 (add-to-list 'load-path "~/emacs/site-lisp/magit")
 (require 'magit)
+;;; Git-Emacs
+(add-to-list 'load-path "~/emacs/site-lisp/git-emacs")
+(require 'git-emacs)

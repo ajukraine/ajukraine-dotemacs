@@ -3,7 +3,7 @@ Emacs configuration
 
 ## How to setup ##
 
-1. Clone the repository:
+1. Clone the repository into folder, chosen by your decision (further called **$CONFIG_DIR$**):
 
 	   ```bash
 	$ git clone git://github.com/ajukraine/ajukraine-dotemacs.git
