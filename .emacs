@@ -89,3 +89,8 @@
 
 ;; Activates switch buffer mode
 (iswitchb-mode t)
+
+;;; Markdown-mode
+(autoload 'markdown-mode "markdown-mode.el" 
+  "Major mode for editing Markdown files" t)
+(add-to-list 'load-path "~/emacs/site-lisp/markdown-mode")
