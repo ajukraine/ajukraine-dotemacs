@@ -2,6 +2,42 @@
 ;;;; @author Bohdan Makohin
 ;;;; Emacs 24.1.1
 
+(require 'cl)
+
+(defun normalize-slashes (pathname)
+  "Reverse the Windows-backslashes in PATHNAME to be Unix-slashes; get rid of doubles"
+  (replace-regexp-in-string "//" "/" (replace-regexp-in-string "\\\\" "/" pathname)))
+
+(defun join-path (&rest args)
+  (normalize-slashes
+   (mapconcat 'identity args "/")))
+
+(defvar emacs-root
+  (let ((candidates
+	 (list (join-path (getenv "HOME") "emacs")
+	       (getenv "HOME"))))
+    (reduce (lambda (old-path new-path)
+	      (or old-path
+		  (and (file-exists-p (join-path new-path ".emacs"))
+		       new-path)))
+	    candidates
+	    :initial-value nil))
+  "The root folder for emacs config.")
+
+(defun add-site-lisp-dir (dir)
+  (add-to-list 'load-path
+	       (let
+		   ((site-path (join-path "/usr/share/emacs/site-lisp" dir))
+		    (local-path (join-path emacs-root "site-lisp" dir)))
+		 (or
+		  (and (file-exists-p site-path) site-path)
+		  (and (file-exists-p local-path) local-path)
+		  (and t (error "site-lisp directory '%s' not found" dir))))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;; Common settings ;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; Navigate between windows, using <Meta>+<Arrow>
 (windmove-default-keybindings 'meta)
 
@@ -96,7 +132,7 @@
 (iswitchb-mode t)
 
 ;;; Markdown-mode
-(add-to-list 'load-path "~/emacs/site-lisp/markdown-mode")
+(add-site-lisp-dir "markdown-mode")
 (autoload 'markdown-mode "markdown-mode.el" 
   "Major mode for editing Markdown files" t)
 (setq auto-mode-alist
@@ -105,15 +141,15 @@
 
 ;;;; Git integration
 ;;; Magit
-(add-to-list 'load-path "~/emacs/site-lisp/magit")
+(add-site-lisp-dir "magit")
 (require 'magit)
 ;;; Git-Emacs
-(add-to-list 'load-path "~/emacs/site-lisp/git-emacs")
+(add-site-lisp-dir "git-emacs")
 (require 'git-emacs)
 
 
 ;;; Auto-Complete
-(add-to-list 'load-path "~/emacs/site-lisp/auto-complete")
+(add-site-lisp-dir "auto-complete")
 (require 'auto-complete-config)
 (ac-config-default)
 (setq ac-auto-start nil)
@@ -122,13 +158,13 @@
 
 
 ;;; Slime
-(add-to-list 'load-path "~/emacs/site-lisp/slime")
+(add-site-lisp-dir "slime")
 (require 'slime)
 (slime-setup '(slime-fancy))
 
 
 ;;; Slime and Auto-Complete
-(add-to-list 'load-path "~/emacs/site-lisp/ac-slime/")
+(add-site-lisp-dir "ac-slime")
 (require 'ac-slime)
 (add-hook 'slime-mode-hook 'set-up-slime-ac)
 (add-hook 'slime-repl-mode-hook 'set-up-slime-ac)
