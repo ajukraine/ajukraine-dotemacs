@@ -18,3 +18,11 @@ Emacs configuration
 	   ```
 
 3. Reload *~/.emacs* file
+
+# Windows #
+
+On Windows OS you could not create symbolic link to *.emacs* file, so instead you could create *~/.emasc.el* file (which is one of the init files candidates for Emacs) which load actual *.emacs*:
+
+	```lisp
+	(load "$CONFIG_DIR$/.emacs")
+	```
