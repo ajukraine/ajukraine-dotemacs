@@ -118,14 +118,28 @@
 	    		 '(2 "_NET_WM_STATE_MAXIMIZED_HORZ" 0)))
 (global-set-key (kbd "S-<f11>") 'fullscreen)
 
-;;; Lisp
-(setq inferior-lisp-program "sbcl")
-
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;        Modes customization         ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;; CC mode. C++
+(defun aj/common-hook ()
+  (local-set-key "\C-c:" 'uncomment-region)
+  (local-set-key "\C-c;" 'comment-region))
+
+(defun aj/c++-mode-hook ()
+  (setq tab-width 4
+	c-basic-offset 4
+	indent-tabs-mode t)
+  (c-set-style "stroustrup")
+  (local-set-key [return] 'newline-and-indent))
+
+(add-hook 'c-mode-common-hook 'aj/common-hook)
+(add-hook 'c++-mode-hook 'aj/c++-mode-hook)
+
+;;; Lisp
+(setq inferior-lisp-program "sbcl")
 
 
 ;; Activates switch buffer mode
