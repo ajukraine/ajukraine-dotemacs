@@ -118,6 +118,14 @@
 	    		 '(2 "_NET_WM_STATE_MAXIMIZED_HORZ" 0)))
 (global-set-key (kbd "S-<f11>") 'fullscreen)
 
+;;; Customize that emacs 'bell' sound
+(defun aj/ring-bell-function ()
+  (unless (memq this-command
+		'(isearch-abort abort-recursive-edit exit-minibuffer keyboard-quit
+				mwheel-scroll down up next-line previous-line
+				backward-char forward-char))
+    (ding)))
+(setq ring-bell-function 'aj/ring-bell-function)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;        Modes customization         ;;;
