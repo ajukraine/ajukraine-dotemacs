@@ -3,6 +3,9 @@
 ;;;;;;;;; Common settings ;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Turn on text highlights
+(global-font-lock-mode t)
+
 ;; Navigate between windows, using <Meta>+<Arrow>
 (windmove-default-keybindings 'meta)
 
