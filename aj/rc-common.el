@@ -1,3 +1,4 @@
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;; Common settings ;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -46,10 +47,10 @@
 		  :underline nil 
 		  :slant normal 
 		  :weight thin
-		  :height 98 
+		  :height 120
 		  :width normal 
 		  :foundry "unknown" 
-		  :family "DejaVu Sans Mono"))))
+		  :family "Dina"))))
  '(show-paren-match ((((class color) (background dark)) (:foreground "black" :background "green")))))
 
 ;; Set the conservative scrolling
