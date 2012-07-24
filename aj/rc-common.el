@@ -89,4 +89,13 @@
   (mapc 'kill-buffer
 	(delq (current-buffer) (buffer-list))))
 
+(add-site-lisp-dir (join-path "[emacsmirror]" "buffer-move"))
+(require 'buffer-move)
+(defun win-swap()
+  "Swap windows using 'buffer-move"
+  (interactive)
+  (if (null (windmove-find-other-window 'right))
+      (buf-move-left)
+    (buf-move-right)))
+
 (provide 'rc-common)

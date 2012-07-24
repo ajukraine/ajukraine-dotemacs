@@ -25,3 +25,6 @@
 [submodule "site-lisp/multi-mode"]
 	path = site-lisp/multi-mode
 	url = git://github.com/deactivated/multi-mode.git
+[submodule "site-lisp/[emacsmirror]/buffer-move"]
+	path = site-lisp/[emacsmirror]/buffer-move
+	url = git://github.com/emacsmirror/buffer-move.git
