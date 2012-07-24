@@ -22,7 +22,9 @@
 (add-hook 'c++-mode-hook 'aj/c++-mode-hook)
 
 ;;; Lisp
-(setq inferior-lisp-program "sbcl")
+(dolist (lisp-candidate '("sbcl" "clisp"))
+  (if (executable-find lisp-candidate)
+      (setq inferior-lisp-program lisp-candidate)))
 
 ;; Activates switch buffer mode
 (iswitchb-mode t)
