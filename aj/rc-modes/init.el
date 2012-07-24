@@ -30,7 +30,11 @@
 (setq auto-mode-alist
       (cons '("\\.md". markdown-mode) auto-mode-alist))
 
-
+;;; C#
+;; csharp-mode
+(add-site-lisp-dir "csharp-mode")
+(autoload 'csharp-mode "csharp-mode" "Major mode for editing C# code." t)
+(add-to-list 'auto-mode-alist '("\\.cs$" . csharp-mode))
 ;;;; Git integration
 ;;; Magit
 (add-site-lisp-dir "magit")
