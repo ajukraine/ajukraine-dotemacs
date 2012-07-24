@@ -39,6 +39,11 @@
 (add-site-lisp-dir "git-emacs")
 (require 'git-emacs)
 
+;;;; Mercurial integration
+;;; Monky
+(add-site-lisp-dir "monky")
+(require 'monky)
+(setq monky-process-type 'cmdserver)
 
 ;;; Auto-Complete
 (add-site-lisp-dir "auto-complete")
