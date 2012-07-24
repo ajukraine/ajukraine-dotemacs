@@ -23,8 +23,9 @@
 
 ;;; Lisp
 (dolist (lisp-candidate '("sbcl" "clisp"))
-  (if (executable-find lisp-candidate)
-      (setq inferior-lisp-program lisp-candidate)))
+  (when (executable-find lisp-candidate)
+    (setq inferior-lisp-program lisp-candidate)
+    (return)))
 
 ;; Activates switch buffer mode
 (iswitchb-mode t)
