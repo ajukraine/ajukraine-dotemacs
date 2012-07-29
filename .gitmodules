@@ -19,9 +19,6 @@
 [submodule "site-lisp/monky"]
 	path = site-lisp/monky
 	url = git://github.com/ananthakumaran/monky.git
-[submodule "site-lisp/csharp-mode"]
-	path = site-lisp/csharp-mode
-	url = git://github.com/mbarbon/csharp-mode.git
 [submodule "site-lisp/multi-mode"]
 	path = site-lisp/multi-mode
 	url = git://github.com/deactivated/multi-mode.git
