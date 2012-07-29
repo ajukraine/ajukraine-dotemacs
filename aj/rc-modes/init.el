@@ -5,30 +5,33 @@
 (require 'use-package)
 
 ;;; Whitespace mode
-(require 'whitespace)
-
+(use-package whitespace)
 
 ;;; Multi-mode
-(add-site-lisp-dir "multi-mode")
 ;; This mode causes the disabling of text color highlight
-;;(require 'multi-mode)
+(use-package multi-mode
+  :load-path (expand-site-lisp "multi-mode")
+  :disabled t)
 
 ;;; CC mode. C++
-(defun aj/common-hook ()
-  (local-set-key "\C-c:" 'uncomment-region)
-  (local-set-key "\C-c;" 'comment-region)
-  (linum-mode 1)
-  (whitespace-mode 1))
+(use-package cc-mode
+  :init 
+  (progn
+    (defun aj/common-hook ()
+      (local-set-key "\C-c:" 'uncomment-region)
+      (local-set-key "\C-c;" 'comment-region)
+      (linum-mode 1)
+      (whitespace-mode 1))
 
-(defun aj/c++-mode-hook ()
-  (setq tab-width 4
-	c-basic-offset 4
-	indent-tabs-mode t)
-  (c-set-style "stroustrup")
-  (local-set-key [return] 'newline-and-indent))
+    (defun aj/c++-mode-hook ()
+      (setq tab-width 4
+	    c-basic-offset 4
+	    indent-tabs-mode t)
+      (c-set-style "stroustrup")
+      (local-set-key [return] 'newline-and-indent))
 
-(add-hook 'c-mode-common-hook 'aj/common-hook)
-(add-hook 'c++-mode-hook 'aj/c++-mode-hook)
+    (add-hook 'c-mode-common-hook 'aj/common-hook)
+    (add-hook 'c++-mode-hook 'aj/c++-mode-hook)))
 
 ;;; Lisp
 (dolist (lisp-candidate '("sbcl" "clisp"))
@@ -40,17 +43,17 @@
 (iswitchb-mode t)
 
 ;;; Markdown-mode
-(add-site-lisp-dir "markdown-mode")
-(autoload 'markdown-mode "markdown-mode.el" 
-  "Major mode for editing Markdown files" t)
-(setq auto-mode-alist
-      (cons '("\\.md". markdown-mode) auto-mode-alist))
+(use-package markdown-mode
+  :load-path (expand-site-lisp "markdown-mode")
+  :mode ("\\.md". markdown-mode))
+
 
 ;;; C#, ASPX
 ;; csharp-mode
-(add-site-lisp-dir "csharp-mode")
-(autoload 'csharp-mode "csharp-mode" "Major mode for editing C# code." t)
-(add-to-list 'auto-mode-alist '("\\.cs$" . csharp-mode))
+(use-package csharp-mode
+  :load-path (expand-site-lisp "csharp-mode")
+  :mode ("\\.cs$" . csharp-mode))
+
 ;; aspx-mode
 ; Disable
 ; (autoload 'aspx-mode "aspx-mode" "Major mode for editing ASPX files." t)
@@ -59,25 +62,34 @@
 
 ;;;; Git integration
 ;;; Magit
-(add-site-lisp-dir "magit")
-(require 'magit)
+(use-package magit
+  :load-path (expand-site-lisp "magit")
+  :commands magit-status
+  :bind ("C-x g" . magit-status))
 ;;; Git-Emacs
-(add-site-lisp-dir "git-emacs")
-(require 'git-emacs)
+(use-package git-emacs
+  :load-path (expand-site-lisp "git-emacs"))
 
 ;;;; Mercurial integration
 ;;; Monky
-(add-site-lisp-dir "monky")
-(require 'monky)
-(setq monky-process-type 'cmdserver)
+(use-package monky
+  :load-path (expand-site-lisp "monky")
+  :commands monky-status
+  :bind ("C-x h" . monky-status)
+  :init
+  (progn
+    (setq monky-process-type 'cmdserver)))
 
 ;;; Auto-Complete
-(add-site-lisp-dir "auto-complete")
-(require 'auto-complete-config)
-(ac-config-default)
-(setq ac-auto-start nil)
-(define-key ac-mode-map (kbd "M-`") 'auto-complete)
-(setq ac-use-fuzzy t)
+(use-package auto-complete-config
+  :load-path (expand-site-lisp "auto-complete")
+  :commands auto-complete-mode
+  :bind ("M-`" . auto-complete)
+  :config
+  (progn
+    (ac-config-default)
+    (setq ac-auto-start nil)
+    (setq ac-use-fuzzy)))
 
 ;;; Cursor settings
 ;; TODO: move to common settings
@@ -87,15 +99,28 @@
 
 
 ;;; Slime
-(add-site-lisp-dir "slime")
-(require 'slime)
-(slime-setup '(slime-fancy))
+(use-package slime
+  :load-path (expand-site-lisp "slime")
+  :commands slime  
+  :config
 
-
-;;; Slime and Auto-Complete
-(add-site-lisp-dir "ac-slime")
-(require 'ac-slime)
-(add-hook 'slime-mode-hook 'set-up-slime-ac)
-(add-hook 'slime-repl-mode-hook 'set-up-slime-ac)
-(eval-after-load "auto-complete"
-   '(add-to-list 'ac-modes 'slime-repl-mode))
+  (progn
+    (add-hook
+     'slime-load-hook
+     #'(lambda ()
+	 (slime-setup 
+	  '(slime-fancy
+	    slime-fuzzy))))
+    (setq slime-net-coding-system 'utf-8-unix)
+  
+    ;; Slime and Auto-Complete
+    (use-package ac-slime
+      :load-path (expand-site-lisp "ac-slime")
+      :init
+      (progn
+	(add-hook 'slime-mode-hook 'set-up-slime-ac)
+	(add-hook 'slime-repl-mode-hook 'set-up-slime-ac))
+      :config
+      (progn
+	(eval-after-load "auto-complete"
+	  '(add-to-list 'ac-modes 'slime-repl-mode))))))
