@@ -25,3 +25,6 @@
 [submodule "site-lisp/[emacsmirror]/buffer-move"]
 	path = site-lisp/[emacsmirror]/buffer-move
 	url = git://github.com/emacsmirror/buffer-move.git
+[submodule "site-lisp/csharp-mode"]
+	path = site-lisp/csharp-mode
+	url = git@github.com:ajukraine/csharp-mode.git
