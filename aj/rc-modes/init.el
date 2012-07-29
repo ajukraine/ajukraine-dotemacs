@@ -2,6 +2,7 @@
 ;;;        Modes customization         ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(require 'use-package)
 
 ;;; Whitespace mode
 (require 'whitespace)

@@ -24,21 +24,22 @@
 	    :initial-value nil))
   "The root folder for emacs config.")
 
+(defun expand-site-lisp (dir)
+  (let
+      ((site-path (join-path "/usr/share/emacs/site-lisp" dir))
+       (local-path (join-path emacs-root "site-lisp" dir)))
+    (or
+     (and (file-exists-p local-path) local-path)
+     (and (file-exists-p site-path) site-path)
+     (and t (error "site-lisp directory '%s' not found" dir)))))
+
 (defun add-site-lisp-dir (dir)
-  (add-to-list 'load-path
-	       (let
-		   ((site-path (join-path "/usr/share/emacs/site-lisp" dir))
-		    (local-path (join-path emacs-root "site-lisp" dir)))
-		 (or
-		  (and (file-exists-p site-path) site-path)
-		  (and (file-exists-p local-path) local-path)
-		  (and t (error "site-lisp directory '%s' not found" dir))))))
+  (add-to-list 'load-path (expand-site-lisp dir)))
 
 (setq
  windows-p (eq system-type 'windows-nt)
  linux-p (eq system-type 'gnu/linux))
 
-(add-to-list 'load-path (join-path emacs-root "aj"))
+(add-to-list 'load-path  (join-path emacs-root "aj"))
 
-(byte-recompile-directory emacs-root)
 (require 'ajukraine)
