@@ -1,0 +1,5 @@
+## Compiled source
+*.elc
+
+## Temp files
+*~

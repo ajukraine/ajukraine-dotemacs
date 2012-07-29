@@ -2,16 +2,22 @@
 ;;;        Modes customization         ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+
+;;; Whitespace mode
+(require 'whitespace)
+
+
 ;;; Multi-mode
 (add-site-lisp-dir "multi-mode")
-
 ;; This mode causes the disabling of text color highlight
 ;;(require 'multi-mode)
 
 ;;; CC mode. C++
 (defun aj/common-hook ()
   (local-set-key "\C-c:" 'uncomment-region)
-  (local-set-key "\C-c;" 'comment-region))
+  (local-set-key "\C-c;" 'comment-region)
+  (linum-mode 1)
+  (whitespace-mode 1))
 
 (defun aj/c++-mode-hook ()
   (setq tab-width 4

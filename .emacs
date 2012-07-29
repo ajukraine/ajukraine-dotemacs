@@ -40,4 +40,5 @@
 
 (add-to-list 'load-path (join-path emacs-root "aj"))
 
+(byte-recompile-directory emacs-root)
 (require 'ajukraine)
