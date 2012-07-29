@@ -15,7 +15,7 @@
 	url = git://github.com/purcell/ac-slime.git
 [submodule "site-lisp/ntemacs-cygwin"]
 	path = site-lisp/ntemacs-cygwin
-	url = https://github.com/ajukraine/ntemacs-cygwin.git
+	url = git@github.com:ajukraine/ntemacs-cygwin.git
 [submodule "site-lisp/monky"]
 	path = site-lisp/monky
 	url = git://github.com/ananthakumaran/monky.git
