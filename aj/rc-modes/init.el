@@ -47,6 +47,7 @@
   :load-path (expand-site-lisp "markdown-mode")
   :mode ("\\.md". markdown-mode))
 
+
 ;;; C#, ASPX
 ;; csharp-mode
 (use-package csharp-mode
@@ -63,6 +64,7 @@
 ;;; Magit
 (use-package magit
   :load-path (expand-site-lisp "magit")
+  :commands magit-status
   :bind ("C-x g" . magit-status))
 ;;; Git-Emacs
 (use-package git-emacs
@@ -72,15 +74,15 @@
 ;;; Monky
 (use-package monky
   :load-path (expand-site-lisp "monky")
-  :commands magit-status
-  :bind ("C-x h" . magit-status)
+  :commands monky-status
+  :bind ("C-x h" . monky-status)
   :init
   (progn
     (setq monky-process-type 'cmdserver)))
 
 ;;; Auto-Complete
 (use-package auto-complete-config
-  :load-path (expand-site-lisp "auto-complete-config")
+  :load-path (expand-site-lisp "auto-complete")
   :commands auto-complete-mode
   :bind ("M-`" . auto-complete)
   :config
@@ -99,17 +101,17 @@
 ;;; Slime
 (use-package slime
   :load-path (expand-site-lisp "slime")
-  :commands slime
-  :init
-  (add-hook
-   'slime-load-hook
-   #'(lambda ()
-       (slime-setup 
-	'(slime-fancy
-	  slime-fuzzy))))
+  :commands slime  
   :config
+
   (progn
-    (setq slime-net-coding-system 'utf-8)
+    (add-hook
+     'slime-load-hook
+     #'(lambda ()
+	 (slime-setup 
+	  '(slime-fancy
+	    slime-fuzzy))))
+    (setq slime-net-coding-system 'utf-8-unix)
   
     ;; Slime and Auto-Complete
     (use-package ac-slime
