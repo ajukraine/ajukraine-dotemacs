@@ -28,3 +28,6 @@
 [submodule "site-lisp/csharp-mode"]
 	path = site-lisp/csharp-mode
 	url = git@github.com:ajukraine/csharp-mode.git
+[submodule "site-lisp/emacs-async"]
+	path = site-lisp/emacs-async
+	url = git://github.com/jwiegley/emacs-async.git
