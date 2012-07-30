@@ -14,7 +14,14 @@
 (require 'rc-common)
 
 ;; Load modes customization
-(load "./rc-modes/init.el")
+(add-to-list 'load-path (join-path emacs-root "aj" "rc-modes"))
+(load "rc-modes/init")
+
+(defun list-to-string (list)
+  (let ((result ""))
+    (loop for str in list 
+	  do (setq result (concat result str)))
+    result))
 
 ;; (byte-recompile-directory emacs-root nil)
 (provide 'ajukraine)

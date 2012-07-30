@@ -40,7 +40,8 @@
     (return)))
 
 ;; Activates switch buffer mode
-(iswitchb-mode t)
+; Now using the IDO mode
+;; (iswitchb-mode t)
 
 ;;; Markdown-mode
 (use-package markdown-mode
@@ -125,4 +126,13 @@
 	(eval-after-load "auto-complete"
 	  '(add-to-list 'ac-modes 'slime-repl-mode))))))
 
-(load "rc-org-mode.el")
+;; Uniquify buffers names
+(use-package uniquify
+  :config
+  (setq 
+   uniquify-buffer-name-style 'post-forward
+   uniquify-after-kill-buffer-p t
+   uniquify-ignore-buffers-re "^\\*"))
+
+(load "rc-org-mode")
+(load "rc-ido")
