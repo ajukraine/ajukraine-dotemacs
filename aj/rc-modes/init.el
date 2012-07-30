@@ -45,7 +45,7 @@
 ;;; Markdown-mode
 (use-package markdown-mode
   :load-path (expand-site-lisp "markdown-mode")
-  :mode ("\\.md". markdown-mode))
+  :mode ("\\.md$". markdown-mode))
 
 
 ;;; C#, ASPX
@@ -124,3 +124,5 @@
       (progn
 	(eval-after-load "auto-complete"
 	  '(add-to-list 'ac-modes 'slime-repl-mode))))))
+
+(load "rc-org-mode.el")
