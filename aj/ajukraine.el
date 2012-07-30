@@ -16,5 +16,5 @@
 ;; Load modes customization
 (load "./rc-modes/init.el")
 
-(byte-recompile-directory emacs-root nil)
+;; (byte-recompile-directory emacs-root nil)
 (provide 'ajukraine)
