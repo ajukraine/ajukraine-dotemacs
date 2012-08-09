@@ -12,7 +12,8 @@
     (setq 
      org-todo-keywords
      '((sequence "TODO(t)" "REOPEN(r@/!)" "|" "DONE(d!)")
-       (sequence "BUG(b)" "|" "FIXED(f!)"))
+       (sequence "BUG(b)" "|" "FIXED(f!)")
+       (sequence "ISSUE(i)" "|" "RESOLVED"))
 
      org-log-done 'note
      ;; org-empty-line-terminates-plain-lists t

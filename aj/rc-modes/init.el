@@ -111,6 +111,7 @@
      #'(lambda ()
 	 (slime-setup 
 	  '(slime-fancy
+	    slime-repl
 	    slime-fuzzy))))
     (setq slime-net-coding-system 'utf-8-unix)
   
