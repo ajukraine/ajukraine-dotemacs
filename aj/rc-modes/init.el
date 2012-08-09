@@ -135,5 +135,5 @@
    uniquify-after-kill-buffer-p t
    uniquify-ignore-buffers-re "^\\*"))
 
-(load "rc-org-mode")
+(load "rc-org")
 (load "rc-ido")
