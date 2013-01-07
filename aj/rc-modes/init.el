@@ -81,6 +81,9 @@
   (progn
     (setq monky-process-type 'cmdserver)))
 
+(use-package popup
+  :load-path (expand-site-lisp "auto-complete/lib/popup"))
+
 ;;; Auto-Complete
 (use-package auto-complete-config
   :load-path (expand-site-lisp "auto-complete")
